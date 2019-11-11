@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <title>CDM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>차량 손상도 측정</h1>
+<div class="agile-its">
+    <h2>차량사진을 업로드 해주세요</h2>
+    <div class="w3layouts">
+        <div class="photos-upload-view">
+
+            <form id="upload" action="/predict" method="POST" enctype="multipart/form-data">
+                <div class="upload-btn-wrapper">
+                    <button class="btn">이미지 업로드</button>
+                    <input type="file" value="Upload" name="image">
+                </div>
+                <input type="submit" value="검 출">
+            </form>
+                {% if label %}
+                    <img src="{{ label }}"  alt="User Image">
+                    <p><a href="{{ label }}" target="blank"><input type="button" value="크게 보기"></a></p>
+                    <form id="uploadScore" action="/scoreto" method="POST">
+                        <p> 검출된 데이터에 대한 만족도를 골라주세요</p>
+                        <p>
+                        <input type="radio" name="score" value="1">1
+                        <input type="radio" name="score" value="2">2
+                        <input type="radio" name="score" value="3">3
+                        <input type="radio" name="score" value="4">4
+                        <input type="radio" name="score" value="5">5
+                        <input type="text" name = "img" value="{{ label }}" />
+                        </p>
+                        <p><input type=submit value=전송></p>
+                    </form>
+                {% endif %}
+
+            
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
